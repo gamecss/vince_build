@@ -18,10 +18,10 @@ jobs:
           git config --global user.email "1156393759@qq.com"
           git config --global user.name "gamecss@bot"
           ccache -M 50G
-          mkdir /los
+          mkdir ~/los
       - name: Get source
         run: |
-          cd /los
+          cd ~/los
           repo init -u https://github.com/LineageOS/android.git -b lineage-18.1
           repo sync
           git clone https://gitlab.com/the-muppets/proprietary_vendor_xiaomi.git vendor/xiaomi
