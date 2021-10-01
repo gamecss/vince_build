@@ -19,17 +19,21 @@ jobs:
           git config --global user.name "gamecss@bot"
           ccache -M 50G
           mkdir ~/los
+          cd ~/los
+          repo init -u https://github.com/LineageOS/android.git -b lineage-18.1
       - name: Get source
         run: |
           cd ~/los
-          repo init -u https://github.com/LineageOS/android.git -b lineage-18.1
-          repo sync
+          repo sync -j64
+      - name: Setup device
+        run: |
+          cd ~/los
           git clone https://gitlab.com/the-muppets/proprietary_vendor_xiaomi.git vendor/xiaomi
           source build/envsetup.sh
           breakfast vince
       - name: Build
         run: |
-          cd /los
+          cd ~/los
           source build/envsetup.sh
           croot
           brunch vince
