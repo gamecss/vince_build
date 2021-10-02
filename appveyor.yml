@@ -19,9 +19,9 @@ init:
     git config --global user.name "gamecss@bot"
 install:
 - sh: >-
-    mkdir ~/los
+    mkdir /home/appveyor/projects/vince-build/los
     
-    cd ~/los
+    cd /home/appveyor/projects/vince-build/los
     
     repo init -u https://github.com/LineageOS/android.git -b lineage-18.1
     
@@ -34,7 +34,7 @@ install:
     breakfast vince
 build_script:
 - sh: >-
-    source ~/los/build/envsetup.sh
+    source /home/appveyor/projects/vince-build/los/build/envsetup.sh
     
     croot
     
