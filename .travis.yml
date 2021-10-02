@@ -39,3 +39,17 @@ addons:
     
 install:
   - curl -s https://storage.googleapis.com/git-repo-downloads/repo | sudo tee /usr/bin/repo > /dev/null && sudo chmod +x /usr/bin/repo
+
+before_script:
+  - mkdir los
+  - cd los
+  - repo init -u https://github.com/LineageOS/android.git -b lineage-18.1
+  - repo sync -j16
+  - git clone https://gitlab.com/the-muppets/proprietary_vendor_xiaomi.git vendor/xiaomi
+  - source build/envsetup.sh
+  - breakfast vince
+
+script:
+  - cd los
+  - source build/envsetup.sh
+  - brunch vince
