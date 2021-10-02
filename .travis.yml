@@ -43,6 +43,9 @@ install:
 before_script:
   - mkdir los
   - cd los
+  - git config --global user.email "1156393759@qq.com"
+  - git config --global user.name "gamecss@bot"
+  - sudo ln -sf /usr/bin/python3 /usr/bin/python
   - repo init -u https://github.com/LineageOS/android.git -b lineage-18.1
   - repo sync -j16
   - git clone https://gitlab.com/the-muppets/proprietary_vendor_xiaomi.git vendor/xiaomi
@@ -52,4 +55,5 @@ before_script:
 script:
   - cd los
   - source build/envsetup.sh
+  - croot
   - brunch vince
