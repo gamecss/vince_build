@@ -5,8 +5,10 @@ platform: x64
 init:
 - sh: >-
     sudo apt update
+    
     echo "1"
 build_script:
 - sh: >-
     sleep 5
+    
     echo "2"
