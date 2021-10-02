@@ -1,3 +1,5 @@
+language: c
+os: linux
 dist: bionic
 addons:
   apt:
@@ -36,4 +38,4 @@ addons:
     - zlib1g-dev 
     
 install:
-  - curl -s https://storage.googleapis.com/git-repo-downloads/repo > /usr/bin/repo && chmod +x /usr/bin/repo
+  - curl -s https://storage.googleapis.com/git-repo-downloads/repo | sudo tee /usr/bin/repo > /dev/null && sudo chmod +x /usr/bin/repo
