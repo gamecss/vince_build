@@ -3,6 +3,10 @@ skip_tags: true
 image: Ubuntu1804
 platform: x64
 init:
-- sh: apt update
+- sh: >-
+    sudo apt update
+    echo "1"
 build_script:
-- sh: echo "1"
+- sh: >-
+    sleep 5
+    echo "2"
