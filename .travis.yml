@@ -43,7 +43,7 @@ install:
 before_script:
   - mkdir los
   - cd los
-  - echo "y" | repo init --single-branch --depth=1 -u https://github.com/LineageOS/android.git -b lineage-18.1
+  - echo "y" | repo init --depth=1 -u https://github.com/LineageOS/android.git -b lineage-18.1
   - repo sync -c -f --no-tags --no-clone-bundle -j16
   - git clone https://gitlab.com/the-muppets/proprietary_vendor_xiaomi.git vendor/xiaomi
   - source build/envsetup.sh
