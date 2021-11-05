@@ -43,11 +43,16 @@ install:
 before_script:
   - mkdir los
   - cd los
-  - echo "y" | repo init -u https://github.com/LineageOS/android.git -b lineage-18.1
-  - repo sync -j16
+  - echo "y" | repo init --single-branch --depth=1 -u https://github.com/LineageOS/android.git -b lineage-18.1
+  - repo sync -c -f --no-tags --no-clone-bundle -j16
   - git clone https://gitlab.com/the-muppets/proprietary_vendor_xiaomi.git vendor/xiaomi
   - source build/envsetup.sh
   - breakfast vince
+  - rm -rf hardware/qcom-caf/wlan
+  - git clone https://android.googlesource.com/platform/hardware/qcom/wlan hardware/qcom-caf/wlan
+  - rm -rf kernel/xiaomi/msm8953
+  - git clone https://github.com/Blacksuan19/kernel_dark_ages_vince.git --single-branch -b darky kernel/xiaomi/msm8953
+  - sed -i 's#TARGET_KERNEL_SOURCE := kernel/xiaomi/msm8953#\nTARGET_KERNEL_VERSION := 4.9' device/xiaomi/msm8953-common/BoardConfigCommon.mk
 
 script:
   - cd los
