@@ -23,15 +23,26 @@ install:
     
     cd /home/appveyor/projects/vince-build/los
     
-    repo init -u https://github.com/LineageOS/android.git -b lineage-18.1
+    repo init --depth=1 -u https://github.com/LineageOS/android.git -b lineage-18.1
     
-    repo sync -j16
+    repo sync -c -f --no-tags --no-clone-bundle -j16
     
     git clone https://gitlab.com/the-muppets/proprietary_vendor_xiaomi.git vendor/xiaomi
     
     source build/envsetup.sh
     
     breakfast vince
+    
+    rm -rf hardware/qcom-caf/wlan
+    
+    git clone --single-branch -b android11-release --depth 1 https://android.googlesource.com/platform/hardware/qcom/wlan hardware/qcom-caf/wlan
+    
+    rm -rf kernel/xiaomi/msm8953
+    
+    git clone  --single-branch -b darky --depth 1 https://github.com/Blacksuan19/kernel_dark_ages_vince.gitkernel/xiaomi/msm8953
+    
+    sed -i 's#TARGET_KERNEL_SOURCE := kernel/xiaomi/msm8953#\nTARGET_KERNEL_VERSION := 4.9' device/xiaomi/msm8953-common/BoardConfigCommon.mk
+
 build_script:
 - sh: >-
     source /home/appveyor/projects/vince-build/los/build/envsetup.sh
